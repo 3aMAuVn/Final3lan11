@@ -8854,43 +8854,6 @@ details.programs-wrap,
 
 
 
-/* === 2026-03-29 exact demo-width shell match (zero gutter) === */
-:root{
-  --demo-style-page-gutter: 0px !important;
-  --site-max: 100vw !important;
-  --max: 100vw !important;
-  --site-shell-max: 100vw !important;
-  --page-shell-max: 100vw !important;
-  --site-gutter: 0px !important;
-  --site-shell-gutter: 0px !important;
-  --page-shell-gutter: 0px !important;
-}
-
-html, body{
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-.wrap,
-main.wrap,
-.container,
-.topbar .container,
-.footer .container,
-.footer-inline .container,
-.hero .container,
-.page-hero .container,
-main > .container,
-section > .container,
-.container > section.wrap,
-.container .price-tool > .wrap,
-.container .price-tool .wrap{
-  width: 100vw !important;
-  max-width: 100vw !important;
-  margin-inline: 0 !important;
-  padding-inline: 0 !important;
-  box-sizing: border-box !important;
-}
 
 /* make inner blocks use the full shell width too */
 .hero-snap,
@@ -8966,6 +8929,187 @@ details.acc,
   .program-feature-hero{
     padding-left: 12px !important;
     padding-right: 12px !important;
+  }
+}
+
+
+
+
+/* Use the same visual shell idea as demo pages:
+   break the normal page containers out to the full viewport width. */
+body:not(.page-demo):not([class*="page-demo-"]) .topbar .container,
+body:not(.page-demo):not([class*="page-demo-"]) .footer .container,
+body:not(.page-demo):not([class*="page-demo-"]) .footer-inline .container,
+body:not(.page-demo):not([class*="page-demo-"]) .hero .container,
+body:not(.page-demo):not([class*="page-demo-"]) .page-hero .container,
+body:not(.page-demo):not([class*="page-demo-"]) main > .container,
+body:not(.page-demo):not([class*="page-demo-"]) section > .container{
+  width: 100vw !important;
+  max-width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Keep content blocks full width inside the shell */
+body:not(.page-demo):not([class*="page-demo-"]) .hero-snap,
+body:not(.page-demo):not([class*="page-demo-"]) .hero-snap-grid,
+body:not(.page-demo):not([class*="page-demo-"]) .hero-snap-full,
+body:not(.page-demo):not([class*="page-demo-"]) .quicklinks,
+body:not(.page-demo):not([class*="page-demo-"]) details.acc,
+body:not(.page-demo):not([class*="page-demo-"]) details.programs-wrap,
+body:not(.page-demo):not([class*="page-demo-"]) .club-wrap,
+body:not(.page-demo):not([class*="page-demo-"]) .club-shell,
+body:not(.page-demo):not([class*="page-demo-"]) .club-card,
+body:not(.page-demo):not([class*="page-demo-"]) .club-highlight,
+body:not(.page-demo):not([class*="page-demo-"]) .page-card,
+body:not(.page-demo):not([class*="page-demo-"]) .form-card,
+body:not(.page-demo):not([class*="page-demo-"]) .policy-summary,
+body:not(.page-demo):not([class*="page-demo-"]) .policy-grid,
+body:not(.page-demo):not([class*="page-demo-"]) .price-grid,
+body:not(.page-demo):not([class*="page-demo-"]) .price-tool,
+body:not(.page-demo):not([class*="page-demo-"]) .premium-panel,
+body:not(.page-demo):not([class*="page-demo-"]) .diff-wrap,
+body:not(.page-demo):not([class*="page-demo-"]) .why-grid,
+body:not(.page-demo):not([class*="page-demo-"]) .two-grid,
+body:not(.page-demo):not([class*="page-demo-"]) .grid,
+body:not(.page-demo):not([class*="page-demo-"]) .mini-grid,
+body:not(.page-demo):not([class*="page-demo-"]) .qr-grid,
+body:not(.page-demo):not([class*="page-demo-"]) .program-feature-hero,
+body:not(.page-demo):not([class*="page-demo-"]) .program-feature-grid,
+body:not(.page-demo):not([class*="page-demo-"]) .home-demo-showcase{
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Give the full-width shell a small internal breathing space,
+   like the demo page card has inside itself. */
+body:not(.page-demo):not([class*="page-demo-"]) .hero-snap,
+body:not(.page-demo):not([class*="page-demo-"]) .quicklinks,
+body:not(.page-demo):not([class*="page-demo-"]) details.acc,
+body:not(.page-demo):not([class*="page-demo-"]) .club-highlight,
+body:not(.page-demo):not([class*="page-demo-"]) .page-card,
+body:not(.page-demo):not([class*="page-demo-"]) .form-card,
+body:not(.page-demo):not([class*="page-demo-"]) .policy-summary,
+body:not(.page-demo):not([class*="page-demo-"]) .price-tool,
+body:not(.page-demo):not([class*="page-demo-"]) .premium-panel,
+body:not(.page-demo):not([class*="page-demo-"]) .home-demo-showcase,
+body:not(.page-demo):not([class*="page-demo-"]) .program-feature-hero{
+  padding-left: var(--demo-shell-inner-pad) !important;
+  padding-right: var(--demo-shell-inner-pad) !important;
+}
+
+@media (max-width: 700px){
+  :root{
+    --demo-shell-inner-pad: 12px;
+  }
+}
+
+
+
+/* === 2026-03-29 safe same-width shell for demo and non-demo pages === */
+:root{
+  --site-unified-shell-pad: 16px !important;
+}
+
+html, body{
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Give every page the same shell width model */
+.wrap,
+main.wrap,
+.container,
+.topbar .container,
+.footer .container,
+.footer-inline .container,
+.hero .container,
+.page-hero .container,
+main > .container,
+main .container,
+section > .container,
+section .container,
+.container > .wrap,
+.container > section.wrap,
+.container .price-tool > .wrap,
+.container .price-tool .wrap{
+  width: 100% !important;
+  max-width: none !important;
+  margin-inline: auto !important;
+  padding-left: var(--site-unified-shell-pad) !important;
+  padding-right: var(--site-unified-shell-pad) !important;
+  box-sizing: border-box !important;
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+}
+
+/* Make major homepage/page blocks expand with that shell */
+.hero-snap,
+.hero-snap-grid,
+.hero-snap-full,
+.quicklinks,
+details.acc,
+details.programs-wrap,
+.philosophy-wrap,
+.club-wrap,
+.club-shell,
+.club-card,
+.club-highlight,
+.page-card,
+.form-card,
+.policy-summary,
+.policy-grid,
+.price-grid,
+.price-tool,
+.premium-panel,
+.diff-wrap,
+.why-grid,
+.two-grid,
+.grid,
+.mini-grid,
+.qr-grid,
+.program-feature-hero,
+.program-feature-grid,
+.home-demo-showcase{
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Remove inner width caps that make non-demo pages look narrower than demo */
+.hero-snap-desc,
+.hero-snap-desc-left,
+.program-feature-hero__copy,
+.program-feature-card,
+.one2one-card,
+.price-tool .wrap{
+  max-width: none !important;
+}
+
+/* Demo cards should use the same shell and still look clean */
+body.page-demo .card,
+body[class*="page-demo"] .card{
+  width: 100% !important;
+  max-width: none !important;
+  margin: 22px 0 40px !important;
+}
+
+@media (max-width: 700px){
+  :root{
+    --site-unified-shell-pad: 12px !important;
   }
 }
 
